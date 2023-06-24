@@ -1,7 +1,4 @@
 import streamlit as st
-import numpy as np
-import cv2
-from PIL import Image
 
 def main():
     _, col1, _ = st.columns(3)
