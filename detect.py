@@ -136,7 +136,6 @@ def predict(numpy_image):
     """
 
     # Preprocess your image
-    # image, image_data = preprocess_image("images/" + image_file, model_image_size = (608, 608))
     image, image_data = preprocess_image(numpy_image, model_image_size = (608, 608))
     
     yolo_model_outputs = yolo_model(image_data)
@@ -144,25 +143,15 @@ def predict(numpy_image):
     
     out_scores, out_boxes, out_classes = yolo_eval(yolo_outputs, [image.size[1],  image.size[0]], 10, 0.3, 0.5)
 
-    # Print predictions info
-    # print('Found {} boxes for {}'.format(len(out_boxes), "images/" + image_file))
-    # print('Found {} boxes for {}'.format(len(out_boxes), "this frame."))
-
     # Generate colors for drawing bounding boxes.
     colors = get_colors_for_classes(len(class_names))
+
     # Draw bounding boxes on the image file
-    #draw_boxes2(image, out_scores, out_boxes, out_classes, class_names, colors, image_shape)
     output_image = draw_boxes(image, out_boxes, out_classes, class_names, out_scores)
 
     return output_image
-    # # Save the predicted bounding box on the image
-    # image.save(os.path.join("out", image_file), quality=100)
-    # # Display the results in the notebook
-    # output_image = Image.open(os.path.join("out", image_file))
-    # imshow(output_image)
 
-    # return out_scores, out_boxes, out_classes
-
+### Implementation with pure openCV (only works in local) ###
 def open_webcam():
     """Start capturing the video using the webcam and make predictions"""
     cap = cv2.VideoCapture(0)
