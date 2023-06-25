@@ -5,7 +5,7 @@ def main():
     with col1:
         st.image("images/logo.png")
     
-    st.markdown("<h2 style='text-align: center;'>Third Eye</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center;'>The Third Eye</h2>", unsafe_allow_html=True)
     st.markdown('''
         Welcome to "**The Third Eye**", a free online tool that aims to offer various computer vision services.
                 
