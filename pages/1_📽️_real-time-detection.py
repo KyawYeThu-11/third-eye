@@ -19,7 +19,7 @@ def main():
     st.subheader("Detection in Real Time")
     # Should use .env file, but there's a damn bug I don't know how to solve
     account_sid = 'ACfd7e5978e3171436cf2fd10fa152bfc9'
-    auth_token = '43953025fd33833e1f2e473ee888e922'
+    auth_token = '967f2fc4b4c7002c04c740a6d4a29d11'
     client = Client(account_sid, auth_token)
 
     token = client.tokens.create()
