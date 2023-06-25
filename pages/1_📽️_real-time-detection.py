@@ -1,5 +1,8 @@
 import streamlit as st
 import av
+import os
+
+from twilio.rest import Client
 from streamlit_webrtc import webrtc_streamer, VideoHTMLAttributes
 from detect import predict
 
@@ -10,12 +13,21 @@ def callback(frame):
     # img = cv2.cvtColor(cv2.Canny(img, 100, 200), cv2.COLOR_GRAY2BGR)
     return av.VideoFrame.from_ndarray(predicted_image, format="bgr24")
 
+## This sample code is from https://www.twilio.com/docs/stun-turn/api
+# Download the helper library from https://www.twilio.com/docs/python/install
 def main():
     st.subheader("Detection in Real Time")
+    # Should use .env file, but there's a damn bug I don't know how to solve
+    account_sid = 'ACfd7e5978e3171436cf2fd10fa152bfc9'
+    auth_token = '43953025fd33833e1f2e473ee888e922'
+    client = Client(account_sid, auth_token)
+
+    token = client.tokens.create()
+
     webrtc_streamer(key="example", 
                     video_frame_callback=callback,
                     rtc_configuration={
-                        "iceServers":[{"urls": ["stun:stun.l.google.com:19302"]}]
+                        "iceServers": token.ice_servers
                     },
                     video_html_attrs=VideoHTMLAttributes(
                         autoPlay=True, controls=True, style={"width": "100%"}, muted=True
