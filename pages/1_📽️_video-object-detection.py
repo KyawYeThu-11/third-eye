@@ -24,7 +24,7 @@ def main():
         client = Client(account_sid, auth_token)
 
         token = client.tokens.create()
-
+    
         webrtc_streamer(key="example", 
                         video_frame_callback=callback,
                         rtc_configuration={

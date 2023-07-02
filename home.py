@@ -1,4 +1,5 @@
 import streamlit as st
+from twilio.rest import Client
 
 def main():
     _, col1, _ = st.columns(3)
@@ -57,15 +58,18 @@ def main():
             - [Developing Web-based Real-time Video/Audio Processing Apps Quickly with Streamlit](https://dev.to/whitphx/developing-web-based-real-time-videoaudio-processing-apps-quickly-with-streamlit-4k89)
         """)
 
-    st.write(st.secrets['ACCOUNT_SID'])
-    st.write(st.secrets['AUTH_TOKEN'])
-
     col2, col3 = st.columns(2)
     with col2:
         st.subheader("📽️ Video Object Detection")
     with col3:
         st.subheader("📸 Photo Object Detection")
 
+    account_sid = st.secrets['ACCOUNT_SID']
+    auth_token = st.secrets['AUTH_TOKEN']
+
+    client = Client(account_sid, auth_token)
+
+    token = client.tokens.create()
 if __name__=="__main__":
     st.set_page_config(page_title="Third Eye",page_icon='images/logo.png')
     main()
