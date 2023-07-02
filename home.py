@@ -70,6 +70,8 @@ def main():
     client = Client(account_sid, auth_token)
 
     token = client.tokens.create()
+
+    st.write(token)
 if __name__=="__main__":
     st.set_page_config(page_title="Third Eye",page_icon='images/logo.png')
     main()
