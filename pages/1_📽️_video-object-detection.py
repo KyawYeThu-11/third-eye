@@ -21,9 +21,6 @@ def main():
         account_sid = st.secrets['ACCOUNT_SID']
         auth_token = st.secrets['AUTH_TOKEN']
 
-        print(account_sid)
-        print(auth_token)
-        
         client = Client(account_sid, auth_token)
 
         token = client.tokens.create()
