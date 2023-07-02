@@ -56,10 +56,7 @@ def main():
             - [You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/abs/1506.02640) (2015)
             - [Developing Web-based Real-time Video/Audio Processing Apps Quickly with Streamlit](https://dev.to/whitphx/developing-web-based-real-time-videoaudio-processing-apps-quickly-with-streamlit-4k89)
         """)
-        
-    st.write(st.secrets['ACCOUNT_SID'])
-    st.write(st.secrets['AUTH-TOKEN'])
-    
+
     col2, col3 = st.columns(2)
     with col2:
         st.subheader("📽️ Video Object Detection")
