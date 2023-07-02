@@ -1,9 +1,11 @@
 import streamlit as st
 import av
+import os
 
 from twilio.rest import Client
 from streamlit_webrtc import webrtc_streamer, VideoHTMLAttributes
 from detect import predict
+from dotenv import load_dotenv, find_dotenv
 
 def callback(frame):
     img = frame.to_ndarray(format="bgr24")
@@ -18,8 +20,10 @@ def main():
         st.subheader("Detection in Video")
         st.info('FPS can be fairly low, which necessitates further optimization of the program :)', icon="ℹ️")
         # Should use .env file, but there's a damn bug I don't know how to solve
-        account_sid = 'ACfd7e5978e3171436cf2fd10fa152bfc9'
-        auth_token = '967f2fc4b4c7002c04c740a6d4a29d11'
+        _ = load_dotenv(find_dotenv())
+        account_sid = os.environ['ACCOUNT_SID']
+        auth_token = os.environ['AUTH_TOKEN']
+        
         client = Client(account_sid, auth_token)
 
         token = client.tokens.create()
